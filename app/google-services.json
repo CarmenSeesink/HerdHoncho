@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "455781345940",
+    "firebase_url": "https://herdhoncho-b8448.firebaseio.com",
+    "project_id": "herdhoncho-b8448",
+    "storage_bucket": "herdhoncho-b8448.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455781345940:android:4c2568f9b3c1cdba5a2281",
+        "android_client_info": {
+          "package_name": "com.example.herdhoncho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455781345940-kgj9s9mi96597hbcotgl1ih6fntba8n8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxoAlz0iRwgGX-bxSMcJvf6xnNq5a92fE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455781345940-kgj9s9mi96597hbcotgl1ih6fntba8n8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
