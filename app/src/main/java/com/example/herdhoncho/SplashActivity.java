@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
                 if(currentUser != null)
                 {
                     // User is logged in
-                    Intent homeIntent = new Intent(SplashActivity.this, UserAccountActivity.class);
+                    Intent homeIntent = new Intent(SplashActivity.this, HomeActivity.class);
                     startActivity(homeIntent);
                 }
                 else

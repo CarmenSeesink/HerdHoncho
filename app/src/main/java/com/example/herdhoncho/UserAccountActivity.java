@@ -38,9 +38,9 @@ public class UserAccountActivity extends AppCompatActivity implements View.OnCli
         updatePasswordBtn = findViewById(R.id.updatePassword_btn);
         updateEmailBtn = findViewById(R.id.updateEmail_btn);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        user = firebaseAuth.getCurrentUser();
 
         welcomeMessageTV.setText("Hi, " +user.getEmail()+"!");
 
@@ -92,13 +92,16 @@ public class UserAccountActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void showLogoutDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setMessage("Are you sure you want to logout?").setPositiveButton("Yes logout", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 firebaseAuth.signOut();
                 ((Activity)context).finish();
+
+                Intent loginActivity = new Intent(UserAccountActivity.this, MainActivity.class);
+                startActivity(loginActivity);
             }
         }).setNegativeButton("No stay logged in", new DialogInterface.OnClickListener() {
             @Override
