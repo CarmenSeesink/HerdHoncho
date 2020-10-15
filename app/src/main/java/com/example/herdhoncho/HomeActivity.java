@@ -35,7 +35,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView homeMessageTV;
     private ImageView selectedImage;
     private ImageButton cameraBtn;
-    private Button addAnimal;
+    private Button addAnimalBtn;
+    private Button viewLivestockBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +79,19 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        addAnimal.setOnClickListener(new View.OnClickListener(){
+        addAnimalBtn = findViewById(R.id.create_animal);
+        addAnimalBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 openAddAnimalActivity();
+            }
+        });
+
+        viewLivestockBtn = findViewById(R.id.viewLivestock_btn);
+        viewLivestockBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openLivestockActivity();
             }
         });
     }
@@ -90,6 +100,12 @@ public class HomeActivity extends AppCompatActivity {
         // Open AddAnimalActivity
         Intent addAnimalIntent = new Intent(HomeActivity.this, AddAnimalActivity.class);
         startActivity(addAnimalIntent);
+    }
+
+    private void openLivestockActivity() {
+        // Open LivestockActivity
+        Intent livestockIntent = new Intent(HomeActivity.this, LivestockActivity.class);
+        startActivity(livestockIntent);
     }
 
     private void askCameraPermissions(){
