@@ -57,11 +57,11 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:id="@+id/bottom_navigation"
         app:itemBackground="@color/colorPrimary"
         app:itemTextColor="@drawable/selector"
         app:itemIconTint="@drawable/selector"
         app:menu="@menu/bottom_menu"
         android:layout_alignParentBottom="true"/>
-
 </RelativeLayout>

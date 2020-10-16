@@ -9,7 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +33,6 @@ import java.util.ArrayList;
 public class LivestockActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private TextView farmNameTV;
 
     ArrayList<Animal> animalArrayList = new ArrayList<>();
 
@@ -63,6 +65,10 @@ public class LivestockActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), UserAccountActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+                    case R.id.add:
+                        startActivity(new Intent(getApplicationContext(), AddAnimalActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
@@ -70,37 +76,13 @@ public class LivestockActivity extends AppCompatActivity {
 
         mContext = this;
 
-        // Get name of farm
-        farmNameTV = findViewById(R.id.farm_name);
-
-        // Get name from Firebase
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        DatabaseReference rootReference = firebaseDatabase.getReference();
-        DatabaseReference nameReference = rootReference.child("Farms").child(currentUser.getUid()).child("name");
-
-        nameReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            // Triggered at least once
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // DataSnapshot will have = {name="xx"}
-                farmNameTV.setText("Livestock of " +dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-
         readAnimalsFromFirebase();
+
     }
 
     // Get animals from Firebase

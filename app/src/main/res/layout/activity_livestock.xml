@@ -8,42 +8,49 @@
     android:background="@color/colorPrimaryDark">
 
     <TextView
-        android:id="@+id/farm_name"
+        android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        android:text="Herd Honcho"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorDarkText"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/semibold"
+        android:layout_alignParentLeft="false" />
+
+    <TextView
+        android:id="@+id/farm_name"
+        android:layout_width="300dp"
+        android:textAlignment="textStart"
+        android:layout_height="wrap_content"
+        android:text="Livestock"
+        android:textColor="@color/colorText"
+        android:layout_alignTop="@id/app_name"
+        android:layout_marginTop="20dp"
+        android:textSize="35sp"
+        android:fontFamily="@font/bold"
+        android:layout_marginLeft="40dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_horizontal" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:paddingBottom="100dp"
         android:id="@+id/recyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/farm_name"
-        app:layout_constraintVertical_bias="0.074" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/farm_name"
+        android:layout_marginTop="20dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:id="@+id/bottom_navigation"
         app:itemBackground="@color/colorPrimary"
         app:itemTextColor="@drawable/selector"
         app:itemIconTint="@drawable/selector"
         app:menu="@menu/bottom_menu"
         android:layout_alignParentBottom="true"/>
-
-
 </RelativeLayout>

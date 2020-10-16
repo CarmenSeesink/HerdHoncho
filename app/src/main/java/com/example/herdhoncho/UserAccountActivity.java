@@ -57,6 +57,10 @@ public class UserAccountActivity extends AppCompatActivity implements View.OnCli
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+                    case R.id.add:
+                        startActivity(new Intent(getApplicationContext(), AddAnimalActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }

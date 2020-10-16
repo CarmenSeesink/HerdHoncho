@@ -39,8 +39,6 @@ public class HomeActivity extends AppCompatActivity {
     private TextView homeMessageTV;
     private ImageView selectedImage;
     private ImageButton cameraBtn;
-    private Button addAnimalBtn;
-    private Button viewLivestockBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +66,14 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), UserAccountActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+                    case R.id.add:
+                        startActivity(new Intent(getApplicationContext(), AddAnimalActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
         });
-
 
         // Get name of farm
         homeMessageTV = findViewById(R.id.homeMessage_TV);
@@ -109,34 +110,6 @@ public class HomeActivity extends AppCompatActivity {
                 askCameraPermissions();
             }
         });
-
-        addAnimalBtn = findViewById(R.id.create_animal);
-        addAnimalBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openAddAnimalActivity();
-            }
-        });
-
-        viewLivestockBtn = findViewById(R.id.viewLivestock_btn);
-        viewLivestockBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openLivestockActivity();
-            }
-        });
-    }
-
-    private void openAddAnimalActivity() {
-        // Open AddAnimalActivity
-        Intent addAnimalIntent = new Intent(HomeActivity.this, AddAnimalActivity.class);
-        startActivity(addAnimalIntent);
-    }
-
-    private void openLivestockActivity() {
-        // Open LivestockActivity
-        Intent livestockIntent = new Intent(HomeActivity.this, LivestockActivity.class);
-        startActivity(livestockIntent);
     }
 
     private void askCameraPermissions(){
@@ -178,7 +151,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.app_menu, menu);
         return true;
