@@ -1,5 +1,6 @@
 package com.example.herdhoncho;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,11 +9,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -32,6 +35,32 @@ public class UserAccountActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account);
+
+        // Init navigation
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // Set current selected
+        bottomNavigationView.setSelectedItemId(R.id.profile);
+
+        // Perform
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.livestock:
+                        startActivity(new Intent(getApplicationContext(), LivestockActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.profile:
+                        return true;
+                    case R.id.scan:
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         welcomeMessageTV = findViewById(R.id.welcomeMessage_TV);
         logoutBtn = findViewById(R.id.logout_btn);
