@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -72,8 +74,7 @@ public class LivestockActivity extends AppCompatActivity {
         readAnimalsFromFirebase();
     }
 
-    // Get notes from Firebase
-
+    // Get animals from Firebase
     private void readAnimalsFromFirebase(){
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -105,6 +106,32 @@ public class LivestockActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(LivestockActivity.this, "Some error occurred.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void deleteAnimalFromFirebase(String animalID){
+        // Delete
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
+        DatabaseReference animalReference = firebaseDatabase.getReference().child("Farms").child(currentUser.getUid()).child("Animals");
+
+        DatabaseReference specificAnimalReference = animalReference.child(animalID);
+
+        specificAnimalReference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(mContext, "Animal is deleted, successfully!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(mContext, "Error occurred!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

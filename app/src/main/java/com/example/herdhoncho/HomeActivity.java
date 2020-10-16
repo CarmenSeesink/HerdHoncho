@@ -12,6 +12,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -143,5 +146,33 @@ public class HomeActivity extends AppCompatActivity {
             Bitmap image = (Bitmap) data.getExtras().get("data");
             selectedImage.setImageBitmap(image);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.app_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case R.id.useraccount:
+                Intent userAccountIntent = new Intent(HomeActivity.this,UserAccountActivity.class);
+                startActivity(userAccountIntent);
+                break;
+
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                this.finish();
+                Intent loginIntent = new Intent(HomeActivity.this,MainActivity.class);
+                startActivity(loginIntent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

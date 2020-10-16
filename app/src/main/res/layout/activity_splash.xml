@@ -6,6 +6,6 @@
     android:layout_height="match_parent"
     android:src="@drawable/splash"
     android:scaleType="fitXY"
-    tools:context=".SplashActivity">
-
+    tools:context=".SplashActivity"
+    android:background="@color/colorPrimaryDark">
 </ImageView>
