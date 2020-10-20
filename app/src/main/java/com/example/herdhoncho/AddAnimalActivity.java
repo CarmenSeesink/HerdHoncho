@@ -3,10 +3,14 @@ package com.example.herdhoncho;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,12 +19,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class AddAnimalActivity extends AppCompatActivity {
 
     private EditText tagNumber, breed, age, weight, relation;
     private Button addAnimalBtn;
     private AddAnimalActivity mContext;
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Button uploadImageBtn;
+    private ImageView uploadIV;
+    private ProgressBar progressBar;
+
+    private Uri ImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +46,19 @@ public class AddAnimalActivity extends AppCompatActivity {
 
         addAnimalBtn = findViewById(R.id.addAnimal_btn);
 
+        uploadImageBtn = findViewById(R.id.imageUpload_btn);
+        uploadIV = findViewById(R.id.imageUpload_IV);
+        progressBar = findViewById(R.id.progress_bar);
+
+        // Upload image
+        uploadImageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+        });
+
+        // Add to Firebase
         addAnimalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +69,26 @@ public class AddAnimalActivity extends AppCompatActivity {
         mContext = AddAnimalActivity.this;
     }
 
+    // Upload image
+    private void openFileChooser(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            ImageUri = data.getData();
+
+            Picasso.with(this).load(ImageUri).into(uploadIV);
+        }
+    }
+
+    // Add to Firebase
     private void addAnimalInFirebase() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();

@@ -119,8 +119,4 @@ public class ScanActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
 }
