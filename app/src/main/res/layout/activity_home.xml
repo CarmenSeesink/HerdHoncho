@@ -60,6 +60,13 @@
         android:minHeight="68dp"
         android:minWidth="68dp"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:id="@+id/navTest"/>
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

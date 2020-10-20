@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.herdhoncho"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -34,6 +34,9 @@ dependencies {
     // Firebase realtime database
     implementation 'com.google.firebase:firebase-database:19.3.0'
 
+    // Firebase ML
+    implementation 'com.google.firebase:firebase-ml-vision:18.0.1'
+
     // Recycler view
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -41,5 +44,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
 }

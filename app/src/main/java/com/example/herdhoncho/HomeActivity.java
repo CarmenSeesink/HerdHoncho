@@ -39,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView homeMessageTV;
     private ImageView selectedImage;
     private ImageButton cameraBtn;
+    private Button test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,9 @@ public class HomeActivity extends AppCompatActivity {
 
         // Set current selected
         bottomNavigationView.setSelectedItemId(R.id.scan);
+
+        // Test
+        test = findViewById(R.id.navTest);
 
         // Perform
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -110,6 +114,16 @@ public class HomeActivity extends AppCompatActivity {
                 askCameraPermissions();
             }
         });
+
+        // Test
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomeActivity.this, "Camera btn is clicked", Toast.LENGTH_SHORT).show();
+                test();
+            }
+        });
     }
 
     private void askCameraPermissions(){
@@ -118,6 +132,11 @@ public class HomeActivity extends AppCompatActivity {
         } else{
             openCamera();
         }
+    }
+
+    private void test(){
+        Intent scanIntent = new Intent(HomeActivity.this, ScanActivity.class);
+        startActivity(scanIntent);
     }
 
     @Override
