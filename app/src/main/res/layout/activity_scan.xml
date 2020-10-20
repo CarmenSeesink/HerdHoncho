@@ -22,29 +22,35 @@
         android:layout_margin="20dp"
         />
 
-    <Button
-        android:id="@+id/scan_btn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/detect_btn"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:onClick="scanBtnStart"
-        android:text="Scan"
-        android:textColor="@color/colorText" />
-    <Button
-        android:id="@+id/detect_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:textColor="@color/colorText"
-        android:text="Detect"
         android:layout_margin="20dp"
-        />
+        android:layout_below="@id/tagNumber_scan">
+
+        <Button
+            android:id="@+id/scan_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="scanBtnStart"
+            android:layout_weight="1"
+            android:text="Scan"
+            android:textColor="@color/colorText" />
+
+        <androidx.legacy.widget.Space
+            android:layout_width="15dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/detect_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorText"
+            android:text="Detect" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
