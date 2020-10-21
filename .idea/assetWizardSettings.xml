@@ -28,7 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_add" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="outputName" value="ic_upload_img" />
                           </map>
                         </option>
                       </PersistentState>

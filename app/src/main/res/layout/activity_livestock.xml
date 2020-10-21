@@ -23,6 +23,7 @@
     <TextView
         android:id="@+id/farm_name"
         android:layout_width="300dp"
+        android:layout_alignParentStart="true"
         android:textAlignment="textStart"
         android:layout_height="wrap_content"
         android:text="Livestock"
@@ -31,10 +32,7 @@
         android:layout_marginTop="20dp"
         android:textSize="35sp"
         android:fontFamily="@font/bold"
-        android:layout_marginLeft="40dp"
-        android:layout_alignParentLeft="true"
-        android:gravity="center_horizontal" />
-
+        android:layout_marginLeft="40dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

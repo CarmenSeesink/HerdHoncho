@@ -32,14 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends AppCompatActivity {
-
-    public static final int REQUEST_CODE = 101;
-    public static final int CAMERA_REQUEST_CODE = 102;
-
     private TextView homeMessageTV;
-    private ImageView selectedImage;
-    private ImageButton cameraBtn;
-    private Button test;
+    private ImageButton startBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.scan);
 
         // Test
-        test = findViewById(R.id.navTest);
+        startBtn = findViewById(R.id.start_btn);
 
         // Perform
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -103,69 +97,20 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // Camera
-        selectedImage = findViewById(R.id.image_camera);
-        cameraBtn = findViewById(R.id.camera_btn);
 
-        cameraBtn.setOnClickListener(new View.OnClickListener() {
+        // Start scan
+        startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(HomeActivity.this, "Camera btn is clicked", Toast.LENGTH_SHORT).show();
-                askCameraPermissions();
-            }
-        });
-
-        // Test
-
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(HomeActivity.this, "Camera btn is clicked", Toast.LENGTH_SHORT).show();
-                test();
+                startScan();
             }
         });
     }
 
-    private void askCameraPermissions(){
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, REQUEST_CODE);
-        } else{
-            openCamera();
-        }
-    }
-
-    private void test(){
+    private void startScan(){
         Intent scanIntent = new Intent(HomeActivity.this, ScanActivity.class);
         startActivity(scanIntent);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
-        if(requestCode == REQUEST_CODE)
-        {
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            {
-                openCamera();
-            }
-            else
-            {
-                Toast.makeText(HomeActivity.this, "Permission is required to open camera", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void openCamera(){
-        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(camera, CAMERA_REQUEST_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAMERA_REQUEST_CODE) {
-            Bitmap image = (Bitmap) data.getExtras().get("data");
-            selectedImage.setImageBitmap(image);
-        }
     }
 
     @Override

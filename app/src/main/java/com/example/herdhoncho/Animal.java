@@ -4,7 +4,7 @@ import com.google.firebase.database.Exclude;
 
 public class Animal {
 
-    String tagNumber, breed, age, weight, relation;
+    String tagNumber, breed, age, weight, relation, imageUrl;
 
     @Exclude
     String animalID;
@@ -13,12 +13,13 @@ public class Animal {
         // Required for Firebase
     }
 
-    public Animal(String tagNumber, String breed, String age, String weight, String relation){
+    public Animal(String tagNumber, String breed, String age, String weight, String relation, String imageUrl){
         this.tagNumber = tagNumber;
         this.breed = breed;
         this.age = age;
         this.weight = weight;
         this.relation = relation;
+        this.imageUrl = imageUrl;
     }
 
     @Exclude
@@ -69,6 +70,14 @@ public class Animal {
 
     public void setRelation(String relation){
         this.relation = relation;
+    }
+
+    public String getImageUrl(){
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl){
+        this.imageUrl = imageUrl;
     }
 
 }

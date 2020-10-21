@@ -37,7 +37,7 @@
         android:gravity="center_horizontal" />
 
     <ImageView
-        android:id="@+id/image_camera"
+        android:id="@+id/image_home"
         android:layout_width="320dp"
         android:layout_height="320dp"
         android:layout_below="@id/homeMessage_TV"
@@ -48,24 +48,17 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
-        android:id="@+id/camera_btn"
+        android:id="@+id/start_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_scan_white"
+        android:src="@drawable/ic_start_arrow"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/image_camera"
+        android:layout_below="@id/image_home"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_background"
         android:padding="20dp"
         android:minHeight="68dp"
         android:minWidth="68dp"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Test"
-        android:id="@+id/navTest"/>
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

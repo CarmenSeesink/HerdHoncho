@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
@@ -48,6 +50,36 @@ public class ScanActivity extends AppCompatActivity {
         scanIV = findViewById(R.id.scan_IV);
         tagNumberScanned = findViewById(R.id.tagNumber_scan);
         detectBtn = findViewById(R.id.detect_btn);
+
+        // Init navigation
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // Set current selected
+        bottomNavigationView.setSelectedItemId(R.id.scan);
+
+        // Perform
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.livestock:
+                        startActivity(new Intent(getApplicationContext(), LivestockActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.scan:
+                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(), UserAccountActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.add:
+                        startActivity(new Intent(getApplicationContext(), AddAnimalActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         // Text to speech
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {

@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,7 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView tagNumber, breed, weight, age, relation, editAnimal, deleteAnimal;
+        ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -39,7 +43,7 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.ViewHold
             relation = itemView.findViewById(R.id.animal_relation);
             editAnimal = itemView.findViewById(R.id.editTV);
             deleteAnimal = itemView.findViewById(R.id.deleteTV);
-
+            imageView = itemView.findViewById(R.id.image_view_upload);
         }
 
     }
@@ -64,6 +68,13 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.ViewHold
         holder.weight.setText(animal.getWeight());
         holder.age.setText(animal.getAge());
         holder.relation.setText(animal.getRelation());
+
+        // Retrieve image
+        Picasso.with(mContext)
+                .load(animal.getImageUrl())
+                .fit()
+                .centerCrop()
+                .into(holder.imageView);
 
         holder.editAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
