@@ -6,26 +6,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.palette.graphics.Palette;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.herdhoncho.Objects.ColorDetector;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -34,20 +33,22 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
-import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.util.HashMap;
+import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
-public class ScanActivity extends AppCompatActivity {
+public class ScanActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public static final int REQUEST_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
 
     ImageView scanIV;
-    EditText tagNumberScanned, yearScanned;
+    EditText tagNumberScanned, yearScanned, weightOutput;
     Button detectBtn;
+    SeekBar weightInput;
+    Spinner breed;
+//    TextView title;
 
     TextToSpeech textToSpeech;
 
@@ -60,10 +61,37 @@ public class ScanActivity extends AppCompatActivity {
         scanIV = findViewById(R.id.scan_IV);
         tagNumberScanned = findViewById(R.id.tagNumber_scan);
         detectBtn = findViewById(R.id.detect_btn);
-//        colorExtract = findViewById(R.id.mainColor);
-        yearScanned = findViewById(R.id.breed);
+        yearScanned = findViewById(R.id.year);
+        weightInput = findViewById(R.id.weightInput);
+        weightOutput = findViewById(R.id.weightOutput);
+        breed = findViewById(R.id.breed);
+//        title = findViewById(R.id.title);
 
-        // Palette API
+        // Spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.breeds, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        breed.setAdapter(adapter);
+        breed.setOnItemSelectedListener(this);
+
+
+        // Weight seek bar
+        weightOutput.setText(weightInput.getProgress() + " kg");
+        weightInput.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                weightOutput.setText(progress + " kg");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(ScanActivity.this, "Start", Toast.LENGTH_SHORT ).show();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(ScanActivity.this, "Stop", Toast.LENGTH_SHORT ).show();
+            }
+        });
 
         // Init navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -171,13 +199,22 @@ public class ScanActivity extends AppCompatActivity {
                 if (swatch != null) {
 
                     int rgb = swatch.getRgb();
-//                    int titleTextColor = swatch.getTitleTextColor();
                     String rgbText = Integer.toHexString(rgb);
 
-                    yearScanned.setBackgroundColor(rgb);
-//                    yearScanned.setTextColor(titleTextColor);
-                    yearScanned.setText(rgbText);
+                    Class<?> cls = this.getClass();
+                    ColorDetector detector = null;
+                    try {
+                        detector = new ColorDetector(getAssets().open("colorconfig.json").getFile());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
+                    List<com.example.herdhoncho.Objects.Color> returned =  detector.findColor(rgbText.substring(2));
+
+                    if(returned.isEmpty())
+                        System.out.println(String.format("could not find a value for detected color %s with the integer value %s", rgbText, Integer.parseInt(rgbText,16)));
+                    else
+                        yearScanned.setText(returned.get(0).getYear());
                 }
             }
 
@@ -185,43 +222,14 @@ public class ScanActivity extends AppCompatActivity {
 
     }
 
-//    public static int getDominantColor(Bitmap bitmap) {
-//        Bitmap newBitmap = Bitmap.createScaledBitmap(bitmap, 1, 1, true);
-//        final int color = newBitmap.getPixel(0, 0);
-//        newBitmap.recycle();
-//        return color;
-//    }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
 
-//    // Generate palette synchronously and return it
-//    public Palette createPaletteSync(Bitmap bitmap) {
-//        Palette palette = Palette.from(bitmap).generate();
-//        return palette;
-//    }
-//
-//    // Generate palette
-//    public void paletteGenerator() {
-//        // Use generated instance
-//        BitmapDrawable drawable = (BitmapDrawable) scanIV.getDrawable();
-//        Bitmap bitmapColor = drawable.getBitmap();
-//
-//        Palette palette = createPaletteSync(bitmapColor);
-//        Palette.Swatch dominantSwatch = palette.getDominantSwatch();
-//        Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
-//        if(dominantSwatch != null)
-//        {
-//            int color = dominantSwatch.getRgb();
-//            colorExtract.setBackgroundColor(color);
-//        }
-//        else if (vibrantSwatch != null)
-//        {
-//            int color = dominantSwatch.getRgb();
-//            colorExtract.setBackgroundColor(color);
-//        }
-//        else
-//        {
-//            colorExtract.setBackgroundColor(Color.YELLOW);
-//        }
-//    }
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
-
+    }
 }

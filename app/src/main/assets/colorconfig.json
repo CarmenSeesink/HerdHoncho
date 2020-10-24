@@ -1,0 +1,45 @@
+[
+  {
+    "name": "pink",
+    "ranges": [
+      {
+        "max": 16758465,
+        "min": 16716947,
+        "variance" : "0.01"
+      },
+      {
+        "max": 14381203,
+        "min": 14381203,
+        "variance": "0"
+      },
+      {
+        "max": 13047173,
+        "min": 13047173,
+        "variance": "0"
+      }
+    ],
+    "year": 2019
+  },
+  {
+    "name": "yellow",
+    "ranges": [
+      {
+        "max": 3674100,
+        "min": 3674199,
+        "variance": 0.05
+      }
+    ],
+    "year": 2015
+  },
+  {
+    "name": "green",
+    "ranges": [
+      {
+        "min": 1587248,
+        "max":1587248,
+        "variance": 0.05
+      }
+    ],
+    "year": 2020
+  }
+]

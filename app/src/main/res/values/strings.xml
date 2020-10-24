@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">HerdHoncho</string>
+    <string-array name="breeds">
+        <item>German Merino</item>
+        <item>Dohne Merino</item>
+        <item>Dormer</item>
+        <item>Afrino</item>
+        <item>Suffolk</item>
+    </string-array>
 </resources>

@@ -154,43 +154,6 @@ public class AddAnimalActivity extends AppCompatActivity {
     // Upload file to Firebase
         private void uploadFile() {
             if (ImageUri != null) {
-//                StorageReference fileReference = storageReference.child(System.currentTimeMillis()
-//                        + "." + getFileExtension(ImageUri));
-//                uploadTask = fileReference.putFile(ImageUri)
-//                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                            @Override
-//                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                                Handler handler = new Handler();
-//                                handler.postDelayed(new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//                                        progressBar.setProgress(0);
-//                                    }
-//                                }, 500);
-//                                Toast.makeText(AddAnimalActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
-//
-//                                // Upload new animal
-//                                Animal newAnimal = new Animal(tagNumber.getText().toString(), breed.getText().toString(), age.getText().toString(),
-//                                        weight.getText().toString(), relation.getText().toString(),taskSnapshot.getResult().getStorage().getDownloadUrl().toString());
-//                                String animalId = databaseReference.push().getKey();
-//                                databaseReference.child(animalId).setValue(newAnimal);
-//                                openLivestockActivity();
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(AddAnimalActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        })
-//                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                            @Override
-//                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-//                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-//                                progressBar.setProgress((int) progress);
-//                            }
-//                        });
-
                 storageReference.putFile(ImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {

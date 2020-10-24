@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,131 +8,251 @@
     tools:context=".ScanActivity"
     android:background="@color/colorPrimaryDark">
 
-    <ImageView
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Herd Honcho"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorDarkText"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"
+        android:layout_alignParentLeft="false" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="300dp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:text="Add livestock information"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorText"
+        android:layout_alignTop="@id/app_name"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
+        android:layout_alignParentLeft="false"
+        android:gravity="center_horizontal" />
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:id="@+id/scan_IV" />
+        android:layout_height="wrap_content"
+        android:text="Tag number"
+        android:textSize="11dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorDarkText"
+        android:layout_below="@id/title"
+        android:id="@+id/tagAction"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tagNumber_layout"
+        android:layout_below="@id/tagAction"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/tagNumber_scan"
+            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:textSize="16dp"
+            android:hint="Tag number"
+            android:paddingStart="20dp"
+            android:layout_weight="1"
+            android:textColor="@color/colorText"
+            android:fontFamily="@font/medium"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/input_background"/>
+
+        <androidx.legacy.widget.Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/detect_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorText"
+            android:text="Detect"
+            android:background="@drawable/rounded_background"/>
+
+        <androidx.legacy.widget.Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/scan_IV"
+            android:layout_marginRight="20dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year on farm"
+        android:textSize="11dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorDarkText"
+        android:id="@+id/yearAction"
+        android:layout_below="@+id/tagNumber_layout"/>
 
     <EditText
-        android:id="@+id/tagNumber_scan"
-        android:layout_height="50dp"
+        android:id="@+id/year"
+        android:layout_height="45dp"
         android:layout_width="match_parent"
-        android:layout_below="@+id/scan_IV"
-        android:textSize="18dp"
-        android:hint="Tag number"
+        android:layout_below="@+id/yearAction"
+        android:textSize="16dp"
+        android:hint="Year"
         android:paddingStart="20dp"
         android:textColor="@color/colorText"
         android:fontFamily="@font/medium"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/input_background"
-        />
+        android:background="@drawable/input_background" />
 
-    <ImageButton
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/image_upload"
-        android:id="@+id/imageUpload"
-        android:src="@drawable/ic_upload_img"
+        android:layout_height="wrap_content"
+        android:text="Upload an image"
+        android:textSize="11dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/tagNumber_scan"/>
+        android:textColor="@color/colorDarkText"
+        android:id="@+id/imageAction"
+        android:layout_below="@+id/year"/>
 
-    <EditText
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_layout"
+        android:layout_below="@+id/imageAction"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/image_upload"
+            android:id="@+id/imageUpload"
+            android:src="@drawable/ic_upload_img"
+            android:layout_marginLeft="20dp" />
+
+        <androidx.legacy.widget.Space
+            android:layout_width="15dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:layout_marginRight="20dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Drag to select weight"
+        android:textSize="11dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorDarkText"
+        android:id="@+id/weightAction"
+        android:layout_below="@+id/image_layout"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weightLayout"
+        android:layout_below="@id/weightAction"
+        android:orientation="horizontal">
+
+        <SeekBar
+            android:id="@+id/weightInput"
+            android:thumbTint="@color/colorAccent"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:min="0"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"/>
+
+        <androidx.legacy.widget.Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/weightOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorText"
+            android:fontFamily="@font/medium"
+            android:layout_marginRight="20dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select breed"
+        android:textSize="11dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorDarkText"
+        android:id="@+id/breedAction"
+        android:layout_below="@+id/weightLayout"/>
+
+    <Spinner
         android:id="@+id/breed"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_width="match_parent"
-        android:layout_below="@+id/imageUpload"
-        android:textSize="18dp"
-        android:hint="Breed"
-        android:paddingStart="20dp"
-        android:textColor="@color/colorText"
-        android:fontFamily="@font/medium"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/breedAction"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/input_background"
-        />
-
-    <EditText
-        android:id="@+id/weight"
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/breed"
-        android:textSize="18dp"
-        android:hint="Weight"
+        android:fontFamily="@font/medium"
         android:paddingStart="20dp"
         android:textColor="@color/colorText"
-        android:fontFamily="@font/medium"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/input_background"
-        />
-
-    <EditText
-        android:id="@+id/age"
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/weight"
-        android:textSize="18dp"
-        android:hint="Age"
-        android:paddingStart="20dp"
-        android:textColor="@color/colorText"
-        android:fontFamily="@font/medium"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/input_background"
-        />
-
-    <EditText
-        android:id="@+id/relation"
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/age"
-        android:textSize="18dp"
-        android:hint="Relation to"
-        android:paddingStart="20dp"
-        android:textColor="@color/colorText"
-        android:fontFamily="@font/medium"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/input_background"
-        />
+        android:textSize="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_below="@id/relation">
+        android:layout_below="@id/breed">
 
         <Button
             android:id="@+id/scan_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:onClick="scanBtnStart"
             android:layout_weight="1"
             android:text="Scan"
-            android:fontFamily="@font/bold"
+            android:fontFamily="@font/medium"
             android:textColor="@color/colorText"
-            android:background="@drawable/rounded_background"/>
+            android:background="@drawable/rounded_btn_blue"/>
 
         <androidx.legacy.widget.Space
             android:layout_width="15dp"
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/detect_btn"
+            android:id="@+id/submit"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:layout_alignParentBottom="true"
             android:textColor="@color/colorText"
-            android:text="Detect"
+            android:text="Save"
             android:background="@drawable/rounded_background"/>
     </LinearLayout>
 
