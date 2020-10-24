@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -204,7 +205,7 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
                     Class<?> cls = this.getClass();
                     ColorDetector detector = null;
                     try {
-                        detector = new ColorDetector(getAssets().open("colorconfig.json").getFile());
+                        detector = new ColorDetector(getAssets().open("colorconfig.json"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -212,9 +213,10 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
                     List<com.example.herdhoncho.Objects.Color> returned =  detector.findColor(rgbText.substring(2));
 
                     if(returned.isEmpty())
-                        System.out.println(String.format("could not find a value for detected color %s with the integer value %s", rgbText, Integer.parseInt(rgbText,16)));
+                        Log.e("Error", String.format("could not find a value for detected color %s with the integer value %s", rgbText.substring(2), Integer.parseInt(rgbText.substring(2),16)));
+//                        System.out.println(String.format("could not find a value for detected color %s with the integer value %s", rgbText, Integer.parseInt(rgbText,16)));
                     else
-                        yearScanned.setText(returned.get(0).getYear());
+                        yearScanned.setText(String.valueOf(returned.get(0).getYear()));
                 }
             }
 

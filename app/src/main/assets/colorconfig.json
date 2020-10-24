@@ -24,19 +24,30 @@
     "name": "yellow",
     "ranges": [
       {
-        "max": 3674100,
-        "min": 3674199,
+        "max": 8943688,
+        "min": 8415288,
         "variance": 0.05
       }
     ],
     "year": 2015
   },
   {
+    "name": "red",
+    "ranges": [
+      {
+        "max": 4205000,
+        "min": 4202000,
+        "variance": 0.05
+      }
+    ],
+    "year": 2019
+  },
+  {
     "name": "green",
     "ranges": [
       {
-        "min": 1587248,
-        "max":1587248,
+        "min": 1060000,
+        "max": 2115648,
         "variance": 0.05
       }
     ],

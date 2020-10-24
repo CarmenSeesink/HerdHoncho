@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,9 +17,14 @@ public class ColorDetector {
     List<Color> data;
     ObjectMapper mapper;
 
-    public ColorDetector(String configurationFile) throws IOException {
+//    public ColorDetector(String configurationFile) throws IOException {
+//        mapper = new ObjectMapper();
+//        data = Arrays.asList(mapper.readValue(new File(configurationFile), Color[].class));
+//    }
+
+    public ColorDetector(InputStream stream) throws IOException {
         mapper = new ObjectMapper();
-        data = Arrays.asList(mapper.readValue(new File(configurationFile), Color[].class));
+        data =  Arrays.asList(mapper.readValue(stream, Color[].class));
     }
 
     public List<Color> getData() {
