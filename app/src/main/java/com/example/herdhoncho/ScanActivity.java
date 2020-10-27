@@ -71,7 +71,8 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
 
     ImageView scanIV;
     EditText tagNumber, year, weight, image;
-    Button detectBtn, addAnimalBtn;
+    ImageButton detectBtn;
+    Button addAnimalBtn;
     SeekBar weightInput;
     Spinner breed;
     ImageButton uploadImageBtn;

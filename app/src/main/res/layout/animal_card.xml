@@ -39,21 +39,29 @@
                 android:minHeight="87dp"
                 android:layout_gravity="center">
 
-                <ImageView
-                    android:id="@+id/image_view_upload"
-                    android:layout_width="66dp"
-                    android:layout_height="66dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    tools:srcCompat="@tools:sample/avatars"
-                    android:src="@drawable/home_img"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/image_view_upload"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        tools:srcCompat="@tools:sample/avatars"
+                        android:src="@drawable/home_img"/>
+
+                </androidx.cardview.widget.CardView>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minHeight="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="8dp">
+                    android:layout_marginLeft="10dp">
 
                     <TextView
                         android:id="@+id/animal_tagNumber"

@@ -8,65 +8,81 @@
     android:background="@color/colorPrimaryDark">
 
     <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Herd Honcho"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorDarkText"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/medium"
+        android:layout_alignParentLeft="false" />
+
+    <TextView
         android:id="@+id/welcomeMessage_TV"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
+        android:textAlignment="center"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/logout_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="220dp"
-        android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/updatePassword_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Update password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logout_btn"
-        app:layout_constraintVertical_bias="0.053" />
+        android:text="Welcome"
+        android:lines="2"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorText"
+        android:layout_alignTop="@id/app_name"
+        android:layout_marginTop="20dp"
+        android:textSize="35sp"
+        android:fontFamily="@font/bold"
+        android:layout_alignParentLeft="false"
+        android:gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/addEmployee_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:text="Add employee"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updateEmail_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_btn_blue"
+        android:textColor="@color/colorText"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Add employee status"
+        android:layout_above="@id/updatePassword_btn"/>
 
+    <Button
+        android:id="@+id/updatePassword_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_background"
+        android:textColor="@color/colorText"
+        android:text="Update password"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_above="@id/updateEmail_btn"/>
 
     <Button
         android:id="@+id/updateEmail_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updatePassword_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_background"
+        android:textColor="@color/colorText"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Update email"
+        android:layout_above="@id/logout_btn"/>
+
+    <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_background"
+        android:textColor="@color/colorText"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Logout"
+        android:layout_above="@id/bottom_navigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
