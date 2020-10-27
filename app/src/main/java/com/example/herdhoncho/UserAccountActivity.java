@@ -25,6 +25,7 @@ public class UserAccountActivity extends AppCompatActivity implements View.OnCli
     private Button logoutBtn;
     private Button updatePasswordBtn;
     private Button updateEmailBtn;
+    private Button addEmployeeDetails;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
@@ -57,8 +58,8 @@ public class UserAccountActivity extends AppCompatActivity implements View.OnCli
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.add:
-                        startActivity(new Intent(getApplicationContext(), AddAnimalActivity.class));
+                    case R.id.task:
+                        startActivity(new Intent(getApplicationContext(), TasksActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -70,6 +71,7 @@ public class UserAccountActivity extends AppCompatActivity implements View.OnCli
         logoutBtn = findViewById(R.id.logout_btn);
         updatePasswordBtn = findViewById(R.id.updatePassword_btn);
         updateEmailBtn = findViewById(R.id.updateEmail_btn);
+        addEmployeeDetails = findViewById(R.id.addEmployee_btn);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -83,6 +85,19 @@ public class UserAccountActivity extends AppCompatActivity implements View.OnCli
 
         context = this;
 
+        // Open employee
+        addEmployeeDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addEmployee();
+            }
+        });
+
+    }
+
+    private void addEmployee(){
+        Intent employeeIntent = new Intent(UserAccountActivity.this, EmployeeActivity.class);
+        startActivity(employeeIntent);
     }
 
     @Override

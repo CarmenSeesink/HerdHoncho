@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanActivity"></activity>
+        <activity android:name=".TasksActivity"></activity>
+        <activity android:name=".EmployeeActivity" />
+        <activity android:name=".ScanActivity" />
         <activity android:name=".EditAnimalActivity" />
         <activity android:name=".LivestockActivity" />
         <activity android:name=".AddAnimalActivity" />
@@ -27,8 +29,8 @@
             </intent-filter>
         </activity>
     </application>
-
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

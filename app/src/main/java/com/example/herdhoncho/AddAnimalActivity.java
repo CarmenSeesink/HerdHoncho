@@ -168,7 +168,7 @@ public class AddAnimalActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Uri downloadUri = task.getResult();
                             Animal newAnimal = new Animal(tagNumber.getText().toString(), breed.getText().toString(), age.getText().toString(),
-                                        weight.getText().toString(), relation.getText().toString(),downloadUri.toString());
+                                        weight.getText().toString(), downloadUri.toString());
                             String animalId = databaseReference.push().getKey();
                                 databaseReference.child(animalId).setValue(newAnimal);
                                 openLivestockActivity();

@@ -141,7 +141,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/image_upload"
-            android:id="@+id/imageUpload"
+            android:id="@+id/imageUploadBtn"
             android:src="@drawable/ic_upload_img"
             android:layout_marginLeft="20dp" />
 
@@ -150,6 +150,7 @@
             android:layout_height="wrap_content" />
 
         <ImageView
+            android:id="@+id/uploadImage"
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_weight="1"

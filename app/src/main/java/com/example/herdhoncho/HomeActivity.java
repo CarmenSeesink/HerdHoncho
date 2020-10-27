@@ -64,8 +64,8 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), UserAccountActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.add:
-                        startActivity(new Intent(getApplicationContext(), AddAnimalActivity.class));
+                    case R.id.task:
+                        startActivity(new Intent(getApplicationContext(), TasksActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

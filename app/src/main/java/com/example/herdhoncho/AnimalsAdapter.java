@@ -30,17 +30,16 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tagNumber, breed, weight, age, relation, editAnimal, deleteAnimal;
+        TextView tagNumber, year, breed, weight, editAnimal, deleteAnimal;
         ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tagNumber = itemView.findViewById(R.id.animal_tagNumber);
+            year = itemView.findViewById(R.id.animal_year);
             breed = itemView.findViewById(R.id.animal_breed);
             weight = itemView.findViewById(R.id.animal_weight);
-            age = itemView.findViewById(R.id.animal_age);
-            relation = itemView.findViewById(R.id.animal_relation);
             editAnimal = itemView.findViewById(R.id.editTV);
             deleteAnimal = itemView.findViewById(R.id.deleteTV);
             imageView = itemView.findViewById(R.id.image_view_upload);
@@ -64,10 +63,10 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.ViewHold
         final Animal animal = animalList.get(position);
 
         holder.tagNumber.setText(animal.getTagNumber());
+        holder.year.setText(animal.getYear());
         holder.breed.setText(animal.getBreed());
         holder.weight.setText(animal.getWeight());
-        holder.age.setText(animal.getAge());
-        holder.relation.setText(animal.getRelation());
+//        holder.relation.setText(animal.getRelation());
 
         // Retrieve image
         Picasso.with(mContext)
@@ -82,10 +81,9 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.ViewHold
                 // Open EditActivity
                 Intent editAnimalIntent = new Intent(mContext, EditAnimalActivity.class);
                 editAnimalIntent.putExtra("tagNumber", animal.getTagNumber());
+                editAnimalIntent.putExtra("year", animal.getYear());
                 editAnimalIntent.putExtra("breed", animal.getBreed());
                 editAnimalIntent.putExtra("weight", animal.getWeight());
-                editAnimalIntent.putExtra("age", animal.getAge());
-                editAnimalIntent.putExtra("relation", animal.getRelation());
                 editAnimalIntent.putExtra("animalID", animal.getAnimalID());
 
                 mContext.startActivity(editAnimalIntent);

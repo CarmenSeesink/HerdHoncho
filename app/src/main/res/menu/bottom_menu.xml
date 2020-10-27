@@ -17,8 +17,8 @@
         android:icon="@drawable/ic_profile"/>
 
     <item
-        android:id="@+id/add"
-        android:title="Add"
-        android:icon="@drawable/ic_add"/>
+        android:id="@+id/task"
+        android:title="Tasks"
+        android:icon="@drawable/ic_notifications"/>
 
 </menu>
