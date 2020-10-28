@@ -19,9 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class EditAnimalActivity extends AppCompatActivity {
 
-    TextView tagNumberET, breedET, weightET, ageET, relationET;
+    TextView tagNumberET, breedET, weightET, yearET;
     Button editBtn;
-    String tagNumber, breed, weight, age, relation, animalID;
+    String tagNumber, breed, weight, year, animalID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +31,7 @@ public class EditAnimalActivity extends AppCompatActivity {
         tagNumberET = findViewById(R.id.tagNumber_ET);
         breedET = findViewById(R.id.breed_ET);
         weightET = findViewById(R.id.weight_ET);
-        ageET = findViewById(R.id.age_ET);
-        relationET = findViewById(R.id.relation_ET);
+        yearET = findViewById(R.id.year_ET);
         editBtn = findViewById(R.id.edit_btn);
 
         if(getIntent().getExtras() != null)
@@ -40,15 +39,13 @@ public class EditAnimalActivity extends AppCompatActivity {
             tagNumber = getIntent().getStringExtra("tagNumber");
             breed = getIntent().getStringExtra("breed");
             weight = getIntent().getStringExtra("weight");
-            age = getIntent().getStringExtra("age");
-            relation = getIntent().getStringExtra("relation");
+            year = getIntent().getStringExtra("year");
             animalID = getIntent().getStringExtra("animalID");
 
             tagNumberET.setText(tagNumber);
             breedET.setText(breed);
             weightET.setText(weight);
-            ageET.setText(age);
-            relationET.setText(relation);
+            yearET.setText(year);
         }
 
         editBtn.setOnClickListener(new View.OnClickListener() {
@@ -73,15 +70,14 @@ public class EditAnimalActivity extends AppCompatActivity {
         specificAnimalReference.child("tagNumber").setValue(tagNumberET.getText().toString());
         specificAnimalReference.child("breed").setValue(breedET.getText().toString());
         specificAnimalReference.child("weight").setValue(weightET.getText().toString());
-        specificAnimalReference.child("age").setValue(ageET.getText().toString());
-        specificAnimalReference.child("relation").setValue(relationET.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        specificAnimalReference.child("year").setValue(yearET.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
                 if(task.isSuccessful())
                 {
                     //note updates successfully.
-                    Toast.makeText(EditAnimalActivity.this, "Note updated successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditAnimalActivity.this, "Animal updated successfully!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

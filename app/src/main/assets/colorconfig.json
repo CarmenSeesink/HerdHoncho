@@ -24,30 +24,41 @@
     "name": "yellow",
     "ranges": [
       {
-        "max": 8943688,
-        "min": 8415288,
+        "max": 10522696,
+        "min": 9470008,
         "variance": 0.05
       }
     ],
-    "year": 2015
+    "year": 2017
   },
   {
     "name": "red",
     "ranges": [
       {
-        "max": 4205000,
-        "min": 4202000,
+        "max": 11552848,
+        "min": 10852848,
         "variance": 0.05
       }
     ],
     "year": 2019
   },
   {
+    "name": "blue",
+    "ranges": [
+      {
+        "max": 3698840,
+        "min": 2648216,
+        "variance": 0.05
+      }
+    ],
+    "year": 2018
+  },
+  {
     "name": "green",
     "ranges": [
       {
-        "min": 1060000,
-        "max": 2115648,
+        "min": 4747336,
+        "max": 5273672,
         "variance": 0.05
       }
     ],
