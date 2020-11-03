@@ -62,6 +62,7 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private ImageView uploadImage;
     private Uri ImageUri;
+    private ScanActivity mContext;
 
     private StorageTask uploadTask;
     private StorageReference storageReference;
@@ -69,7 +70,7 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
     private FirebaseUser currentUser;
     private FirebaseDatabase firebaseDatabase;
 
-    ImageView scanIV;
+    ImageView scanIV, colorIV;
     EditText tagNumber, year, weight, image;
     ImageButton detectBtn;
     Button addAnimalBtn;
@@ -86,6 +87,7 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // Assign variables
         scanIV = findViewById(R.id.scan_IV);
+        colorIV = findViewById(R.id.color_IV);
         tagNumber = findViewById(R.id.tagNumber_scan);
         detectBtn = findViewById(R.id.detect_btn);
         year = findViewById(R.id.year);
@@ -99,7 +101,7 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
         // Get Firebase instance
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Farms").child(currentUser.getUid()).child("Animals");
-        storageReference = FirebaseStorage.getInstance().getReference("Uploads");
+        storageReference = FirebaseStorage.getInstance().getReference().child("Uploads/"+System.currentTimeMillis());
 
         // Upload image
         uploadImageBtn.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +120,8 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
                 } else {
                     uploadFile();
                 }
+
+                mContext = ScanActivity.this;
             }
         });
 
@@ -222,15 +226,15 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK)
+        if (requestCode == REQUEST_CODE)
         {
             Bundle bundle = data.getExtras();
-            //from bundle, extract the image
+            // From bundle, extract the image
             Bitmap bitmap = (Bitmap) bundle.get("data");
-            //set image in imageview
+            // Set image in imageview
             scanIV.setImageBitmap(bitmap);
             //process the image
-            //1. create a FirebaseVisionImage object from a Bitmap object
+            //1. FirebaseVisionImage object from a Bitmap object
             FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(bitmap);
             //2. Get an instance of FirebaseVision
             FirebaseVision firebaseVision = FirebaseVision.getInstance();
@@ -264,6 +268,7 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
 
                         int rgb = swatch.getRgb();
                         String rgbText = Integer.toHexString(rgb);
+                        colorIV.setBackgroundColor(swatch.getRgb());
 
                         Class<?> cls = this.getClass();
                         ColorDetector detector = null;
@@ -285,7 +290,7 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
             });
         }
 
-        else if (resultCode == RESULT_OK && requestCode == PICK_IMAGE_REQUEST && data != null && data.getData() != null)
+        else if (requestCode == PICK_IMAGE_REQUEST && data != null && data.getData() != null)
         {
             ImageUri = data.getData();
 

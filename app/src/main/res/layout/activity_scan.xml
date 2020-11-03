@@ -27,6 +27,7 @@
         android:textAlignment="center"
         android:layout_height="wrap_content"
         android:text="Add livestock information"
+        android:fontFamily="@font/bold"
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorText"
         android:layout_alignTop="@id/app_name"
@@ -35,16 +36,50 @@
         android:layout_alignParentLeft="false"
         android:gravity="center_horizontal" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        android:layout_below="@id/title"
+        android:scrollbars="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Scan tag"
+                android:textSize="11dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/colorDarkText"
+                android:id="@+id/scanAction"/>
+
+            <ImageButton
+                android:id="@+id/scan_btn"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/scanAction"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:onClick="scanBtnStart"
+                android:textColor="@color/colorText"
+                android:src="@drawable/ic_scanner"
+                android:background="@drawable/rounded_btn_blue"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tag number"
+        android:layout_below="@id/scan_btn"
         android:textSize="11dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="30dp"
         android:textColor="@color/colorDarkText"
-        android:layout_below="@id/title"
         android:id="@+id/tagAction"/>
 
     <LinearLayout
@@ -58,8 +93,7 @@
             android:id="@+id/tagNumber_scan"
             android:layout_height="45dp"
             android:layout_width="wrap_content"
-            android:textSize="16dp"
-            android:hint="Tag number"
+            android:textSize="25dp"
             android:paddingStart="20dp"
             android:layout_weight="3"
             android:textColor="@color/colorText"
@@ -67,31 +101,40 @@
             android:layout_marginLeft="20dp"
             android:background="@drawable/input_background"/>
 
-        <androidx.legacy.widget.Space
-            android:layout_width="10dp"
-            android:layout_height="wrap_content" />
-
         <ImageButton
             android:id="@+id/detect_btn"
-            android:layout_width="45dp"
+            android:layout_width="wrap_content"
+            android:paddingStart="20dp"
+            android:layout_marginRight="20dp"
             android:layout_height="45dp"
             android:layout_weight="1"
+            android:layout_marginLeft="-20dp"
             android:layout_alignParentBottom="true"
             android:textColor="@color/colorText"
             android:src="@drawable/ic_volume"
-            android:background="@drawable/rounded_background"/>
-
-        <androidx.legacy.widget.Space
-            android:layout_width="10dp"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:layout_weight="2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/scan_IV"
-            android:layout_marginRight="20dp"/>
+            android:background="@drawable/input_background"/>
     </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_below="@+id/tagNumber_layout"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="@color/colorPrimaryDark"
+                app:cardElevation="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/imageCard"
+                android:layout_marginTop="15dp"
+                android:elevation="0dp">
+
+            <ImageView
+                android:background="@drawable/image_upload"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/scan_IV" />
+            </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="match_parent"
@@ -103,7 +146,7 @@
         android:layout_marginTop="20dp"
         android:textColor="@color/colorDarkText"
         android:id="@+id/yearAction"
-        android:layout_below="@+id/tagNumber_layout"/>
+        android:layout_below="@+id/imageCard"/>
 
     <EditText
         android:id="@+id/year"
@@ -119,6 +162,27 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/input_background" />
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_below="@+id/year"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="@color/colorPrimaryDark"
+                app:cardElevation="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/colorCard"
+                android:elevation="0dp">
+
+                <ImageView
+                    android:background="@drawable/image_upload"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:id="@+id/color_IV" />
+            </androidx.cardview.widget.CardView>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,7 +193,7 @@
         android:layout_marginTop="20dp"
         android:textColor="@color/colorDarkText"
         android:id="@+id/imageAction"
-        android:layout_below="@+id/year"/>
+        android:layout_below="@+id/colorCard"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -227,37 +291,22 @@
         android:textColor="@color/colorText"
         android:textSize="16dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_below="@id/breed">
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="4"
+                android:textColor="@color/colorText"
+                android:text="Save"
+                android:layout_below="@id/breed"
+                android:background="@drawable/rounded_btn_blue"/>
+        </RelativeLayout>
 
-        <ImageButton
-            android:id="@+id/scan_btn"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:onClick="scanBtnStart"
-            android:layout_weight="1"
-            android:textColor="@color/colorText"
-            android:src="@drawable/ic_scanner"
-            android:background="@drawable/rounded_background"/>
-
-        <androidx.legacy.widget.Space
-            android:layout_width="15dp"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_weight="4"
-            android:layout_alignParentBottom="true"
-            android:textColor="@color/colorText"
-            android:text="Save"
-            android:background="@drawable/rounded_btn_blue"/>
-    </LinearLayout>
-
+    </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

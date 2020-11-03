@@ -29,8 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textSize="20dp"
         android:inputType="textPersonName"
-        android:hint="Tag number"
         android:layout_margin="20dp"
         android:layout_below="@+id/imageUpload_btn" />
 
