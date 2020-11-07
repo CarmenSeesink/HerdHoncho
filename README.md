@@ -133,8 +133,6 @@ The app detects the dominant color from the scanned tag.
 
 Based on the dominant color the app predicts the year the livestock was born or brought to the farm.
 
-![image4][image4] 
-
 ### Authentication
 
 Using Firebase authentication, the app's login and sign up is secure.
@@ -180,4 +178,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [image1]: Images/1.png
 [image2]: Images/2.png
 [image3]: Images/3.png
-[image4]: Images/4.png
