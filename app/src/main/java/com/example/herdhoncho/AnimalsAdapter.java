@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,7 +31,8 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tagNumber, year, breed, weight, editAnimal, deleteAnimal;
+        TextView tagNumber, year, breed, weight;
+        ImageButton editAnimal, deleteAnimal;
         ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {

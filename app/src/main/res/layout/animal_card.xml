@@ -112,28 +112,29 @@
                             android:layout_weight="1"/>
 
                         <androidx.legacy.widget.Space
-                            android:layout_width="30dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content" />
 
-                        <TextView
+                        <ImageButton
                             android:id="@+id/editTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="EDIT"
+                            android:layout_width="45px"
+                            android:layout_height="45px"
+                           android:background="@color/colorPrimary"
+                            android:src="@drawable/ic_baseline_edit"
                             android:layout_weight="1"
-                            android:textColor="@color/colorAccent" />
+                            />
 
                         <androidx.legacy.widget.Space
-                            android:layout_width="10dp"
+                            android:layout_width="40dp"
                             android:layout_height="wrap_content" />
 
-                        <TextView
+                        <ImageButton
                             android:id="@+id/deleteTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="DELETE"
-                            android:textColor="@color/colorAccent"
-                            android:layout_weight="1" />
+                            android:layout_width="45px"
+                            android:layout_height="45px"
+                            android:src="@drawable/ic_delete"
+                            android:layout_weight="1"
+                            />
 
                     </LinearLayout>
 

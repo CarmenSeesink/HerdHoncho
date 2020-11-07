@@ -39,7 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/farm_name"
-        android:layout_marginTop="20dp"/>
+        android:layout_above="@id/bottom_navigation"
+        android:layout_marginTop="20dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

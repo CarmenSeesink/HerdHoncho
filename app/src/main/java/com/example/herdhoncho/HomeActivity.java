@@ -102,7 +102,6 @@ public class HomeActivity extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomeActivity.this, "Camera btn is clicked", Toast.LENGTH_SHORT).show();
                 startScan();
             }
         });

@@ -126,8 +126,8 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
         // Spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.breeds, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.breeds, R.layout.custom_spinner);
+        adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown);
         breed.setAdapter(adapter);
         breed.setOnItemSelectedListener(this);
 
@@ -141,12 +141,10 @@ public class ScanActivity extends AppCompatActivity implements AdapterView.OnIte
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(ScanActivity.this, "Start", Toast.LENGTH_SHORT ).show();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(ScanActivity.this, "Stop", Toast.LENGTH_SHORT ).show();
             }
         });
 

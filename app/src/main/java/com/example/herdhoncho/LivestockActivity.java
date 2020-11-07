@@ -103,8 +103,6 @@ public class LivestockActivity extends AppCompatActivity {
 
                    animal.setAnimalID(animalSnapShot.getKey());
 
-                   Toast.makeText(LivestockActivity.this, "animal tagNumber" +animal.getTagNumber(), Toast.LENGTH_SHORT).show();
-
                    // Add animal to ArrayList
                     animalArrayList.add(animal);
                 }

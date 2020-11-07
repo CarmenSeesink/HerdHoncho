@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(task.isSuccessful())
                     {
                         // Login
-                        Toast.makeText(MainActivity.this, "Logged in user: " +email, Toast.LENGTH_SHORT).show();
-
                         Intent userAccountActivity = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(userAccountActivity);
                     }
